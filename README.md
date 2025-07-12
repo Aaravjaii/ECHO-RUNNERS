@@ -1,6 +1,7 @@
 # 🎮 Echo Runner
 
 Echo Runner is a rhythm-based endless runner game made in Unity. Jump, slide, or dodge obstacles in sync with the music beats to score high combos!
+lessssgooooooo
 
 ## 🔧 Features
 - Beat-synced obstacle spawning (BPM-based)
