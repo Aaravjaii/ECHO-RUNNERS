@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -6,8 +6,12 @@ public class ScoreManager : MonoBehaviour
     public int combo = 0;
     public int multiplier = 1;
 
+    public bool isGameOver = false; // ✅ Flag to stop score updates after death
+
     public void AddScore(int baseScore)
     {
+        if (isGameOver) return; // ✅ Do nothing if game over
+
         score += baseScore * multiplier;
         Debug.Log("Score: " + score);
 
@@ -21,6 +25,7 @@ public class ScoreManager : MonoBehaviour
 
     public void ResetCombo()
     {
+        if (isGameOver) return; // ✅ Optional: stop combo reset after death
         combo = 0;
         multiplier = 1;
         Debug.Log("Combo reset. Multiplier back to x1");

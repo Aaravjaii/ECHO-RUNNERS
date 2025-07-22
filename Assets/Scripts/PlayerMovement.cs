@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public SpeedManager speedManager;
     public float forwardSpeed = 5f;
     public float laneDistance = 2.5f;
     private int currentLane = 1;
@@ -10,15 +11,20 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 7f;
     private Rigidbody rb;
     private bool isGrounded = true;
-    private bool isCrouching = false; // ✅ Track crouch state
+    private bool isCrouching = false;
 
     public TimingWindow timingWindow;
     public ScoreManager scoreManager;
     public RatingTextSpawner ratingSpawner;
 
+    public AudioClip jumpSound;
+    public AudioClip crouchSound;
+    private AudioSource audioSource;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -32,24 +38,26 @@ public class PlayerMovement : MonoBehaviour
             currentLane++;
         }
 
-        // ✅ Jump only if grounded and not crouching
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded && !isCrouching)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isGrounded = false;
+
+            PlaySound(jumpSound);
 
             string rating = timingWindow.GetRating();
             ratingSpawner.SpawnRating(rating);
             ApplyScore(rating);
         }
 
-        // ✅ Handle crouch toggle
         if (Input.GetKey(KeyCode.LeftControl) && isGrounded)
         {
             if (!isCrouching)
             {
                 Crouch();
                 isCrouching = true;
+
+                PlaySound(crouchSound);
 
                 string rating = timingWindow.GetRating();
                 ratingSpawner.SpawnRating(rating);
@@ -68,7 +76,8 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.velocity = new Vector3(0, rb.velocity.y, forwardSpeed);
+        float speed = speedManager.currentSpeed;
+        rb.velocity = new Vector3(0, rb.velocity.y, speed);
         rb.angularVelocity = Vector3.zero;
 
         Vector3 targetPosition = new Vector3((currentLane - 1) * laneDistance, rb.position.y, rb.position.z);
@@ -85,6 +94,8 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Obstacle"))
         {
             Debug.Log("Hit Obstacle!");
+
+            scoreManager.isGameOver = true;
 
             GameOverManager gameOverManager = FindObjectOfType<GameOverManager>();
             if (gameOverManager != null)
@@ -121,6 +132,14 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             scoreManager.ResetCombo();
+        }
+    }
+
+    void PlaySound(AudioClip clip)
+    {
+        if (audioSource != null && clip != null)
+        {
+            audioSource.PlayOneShot(clip);
         }
     }
 }

@@ -10,7 +10,7 @@ public class BeatManager : MonoBehaviour
     private float nextBeatTime;
 
     public AudioSource musicSource;
-    public ScoreManager scoreManager;  // ✅ Added line
+    public ScoreManager scoreManager;
 
     void Start()
     {
@@ -26,7 +26,16 @@ public class BeatManager : MonoBehaviour
             nextBeatTime += beatInterval;
 
             OnBeat?.Invoke();  // Notify all listeners
-            scoreManager.AddScore(10);  // ✅ Added line
+            scoreManager.AddScore(10);
+        }
+    }
+
+    // ✅ Call this method from GameOverManager to stop background music
+    public void StopMusic()
+    {
+        if (musicSource != null && musicSource.isPlaying)
+        {
+            musicSource.Stop();
         }
     }
 }
