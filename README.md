@@ -1,21 +1,62 @@
-# 🎮 Echo Runner
+<h1 align="center">🚀 Echo Runner</h1>
+<p align="center">
+  A rhythm-based sci-fi runner built with Unity.<br>
+  <b>Dodge. Jump. Crouch. To the Beat.</b>
+</p>
 
-Echo Runner is a rhythm-based endless runner game made in Unity. Jump, slide, or dodge obstacles in sync with the music beats to score high combos!
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Aaravjii/ECHO-RUNNERS/master/image/Screenshot%202025-07-22%20123250.png" width="80%" alt="Gameplay Screenshot">
+</p>
 
-## 🔧 Features
-- Beat-synced obstacle spawning (BPM-based)
-- Perfect / Good / Miss rating system
-- Combo bar with color/momentum feedback
-- Endless scrolling plane
-- Game Over screen with restart + final score
+---
 
-## 🎮 Controls
-- Move Left: ←
-- Move Right: →
-- Jump: Spacebar
-- Crouch: Left Ctrl
+## 🎮 Gameplay Overview
 
-## 🚀 How to Run
-1. Clone the repo
-2. Open in Unity 2022.3+
-3. Press Play ▶️
+Echo Runner is a rhythm-based endless runner where you dodge obstacles on beat to earn high scores and keep your combo streak alive. 
+
+| Action         | Key             |
+|----------------|------------------|
+| ⬅️ / ➡️        | Switch Lanes     |
+| ⬆️ (Jump)      | Spacebar         |
+| ⬇️ (Crouch)    | Left Ctrl        |
+
+- 🟢 Perfect → +20  
+- 🟡 Good → +10  
+- 🔴 Miss → Combo Break + Screen Shake
+
+---
+
+## ✨ Features
+
+- 🔊 Beat-synced obstacle spawning (powered by BPM)
+- 🌌 Sci-fi visuals with asteroid terrain & dynamic skybox
+- 🛣️ 3-lane runner mechanics with jump and crouch
+- 🧠 Smart obstacle cooldown system + difficulty scaling
+- 📈 Score + Combo System + Hit Rating Text
+- 🎇 Particle FX + Camera Shake on "Miss"
+- 🎧 Custom BGM & Game Over audio via manager scripts
+- 🎞️ Fade-in/fade-out animation for obstacles
+- 🕹️ Main Menu → Loading → Game → Game Over flow
+- ⏳ Custom loading screen with animated wait (10s min)
+
+---
+
+## 📂 Project Structure
+
+```text
+Assets/
+├── Scripts/
+│   ├── PlayerMovement.cs
+│   ├── BeatManager.cs
+│   ├── ObstacleSpawner.cs
+│   └── GameOverManager.cs
+├── Scenes/
+│   ├── MainMenu.unity
+│   ├── Loading.unity
+│   └── SampleScene.unity
+├── Audio/
+│   ├── BackgroundMusic.mp3
+│   └── GameOver.wav
+├── Prefabs/
+│   └── Obstacles (Laser, Drone, Rock)
+├── UI Elements/
