@@ -5,7 +5,9 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Aaravjii/ECHO-RUNNERS/master/image/Screenshot%202025-07-22%20123250.png" width="80%" alt="Gameplay Screenshot">
+  <img src="https://github.com/Aaravjaii/ECHO-RUNNERS/blob/master/image/Screenshot%202025-07-22%20123250.png?raw=true" width="80%" alt="Gameplay Screenshot 1"><br><br>
+  <img src="https://github.com/Aaravjaii/ECHO-RUNNERS/blob/master/image/Screenshot%202025-07-22%20123258.png?raw=true" width="80%" alt="Gameplay Screenshot 2"><br><br>
+  <img src="https://github.com/Aaravjaii/ECHO-RUNNERS/blob/master/image/Screenshot%202025-07-22%20123311.png?raw=true" width="80%" alt="Gameplay Screenshot 3">
 </p>
 
 ---
